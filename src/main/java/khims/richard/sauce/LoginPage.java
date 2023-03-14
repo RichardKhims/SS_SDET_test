@@ -17,6 +17,9 @@ public class LoginPage extends PageObject {
     @FindBy(xpath = "//*[@id='login-button']")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//*[@data-test='error']")
+    private WebElement errorHint;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -31,5 +34,13 @@ public class LoginPage extends PageObject {
         loginButton.click();
 
         return new InventoryPage(driver);
+    }
+
+    public boolean isErrorHintVisible() {
+        return errorHint.isDisplayed();
+    }
+
+    public String errorHintText() {
+        return errorHint.getText();
     }
 }

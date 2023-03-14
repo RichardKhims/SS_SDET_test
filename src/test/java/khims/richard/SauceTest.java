@@ -55,4 +55,14 @@ public class SauceTest {
         Assertions.assertEquals("THANK YOU FOR YOUR ORDER", checkoutCompletePage.completeHeaderText());
     }
 
+    @Test
+    public void loginFailTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        loginPage.login("test", "test");
+
+        Assertions.assertTrue(loginPage.isErrorHintVisible());
+        Assertions.assertEquals("Epic sadface: Username and password do not match any user in this service",
+                loginPage.errorHintText());
+    }
 }
